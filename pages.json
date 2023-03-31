@@ -179,6 +179,13 @@
 				"navigationBarTitleText": "消息推送",
 				"navigationStyle": "default"
 			}
+		},
+		{
+			"path": "uni_modules/db-admin/pages/db",
+			"style": {
+				"navigationBarTitleText": "数据库管理",
+				"navigationStyle": "default"
+			}
 		}
 	],
 	"subPackages": [

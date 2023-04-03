@@ -100,3 +100,13 @@ $menu-text-color-actived: #409eff; // 菜单激活前景色
 $left-window-bg-color: $menu-bg-color; // 左侧窗口背景色
 $top-window-bg-color: #fff; // 顶部窗口背景色
 $top-window-text-color: #999; // 顶部窗口前景色
+
+/* 统一样式修改 */
+.uni-forms-item .uni-forms-item__content{
+	display: flex;
+	align-items: center;
+}
+
+.el-button {
+	// margin: 10px 0;
+}

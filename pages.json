@@ -187,7 +187,25 @@
 				"navigationStyle": "default"
 			}
 		}
-	],
+	,{
+    "path": "pages/tool-list/add",
+    "style": {
+        "navigationBarTitleText": "新增"
+    }
+}
+,{
+    "path": "pages/tool-list/edit",
+    "style": {
+        "navigationBarTitleText": "编辑"
+    }
+}
+,{
+    "path": "pages/tool-list/list",
+    "style": {
+        "navigationBarTitleText": "列表"
+    }
+}
+],
 	"subPackages": [
 		{
 			"root": "pages/system",

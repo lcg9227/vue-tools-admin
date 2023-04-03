@@ -13,11 +13,13 @@
     },
     "name": {
       "bsonType": "string",
-      "description": "名称"
+      "description": "名称",
+      "label": "名称："
     },
     "type": {
       "bsonType": "int",
       "description": "类型",
+      "label": "类型：",
       "defaultValue": 0,
       "enum": [
         {
@@ -35,11 +37,13 @@
     },
     "icon": {
       "bsonType": "string",
-      "description": "icon"
+      "description": "icon",
+      "label": "图标："
     },
     "path": {
       "bsonType": "string",
-      "description": "路径"
+      "description": "路径",
+      "label": "路径："
     }
   }
 }

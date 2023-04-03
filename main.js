@@ -18,8 +18,8 @@ const i18n = new VueI18n({
 })
 Vue.use(plugin)
 App.mpType = 'app'
-const app = new Vue({
-  i18n,
+  const app = new Vue({
+    i18n,
   store,
   ...App
 })

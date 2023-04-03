@@ -2,6 +2,8 @@ import App from './App'
 import store from './store'
 import plugin from './js_sdk/uni-admin/plugin'
 import messages from './i18n/index.js'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 const lang = uni.getLocale()
 // #ifndef VUE3
@@ -21,7 +23,7 @@ const app = new Vue({
   store,
   ...App
 })
-app.$mount()
+app.use(ElementPlus, { size: 'default' }).$mount()
 // #endif
 
 // #ifdef VUE3

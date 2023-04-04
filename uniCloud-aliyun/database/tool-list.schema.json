@@ -2,7 +2,7 @@
   "bsonType": "object",
   "required": [],
   "permission": {
-    "read": "doc.permission in auth.permission",
+    "read": "doc.permissionType == 0 || doc.permission in auth.permission",
     "create": false,
     "update": false,
     "delete": false
@@ -44,6 +44,25 @@
       "bsonType": "string",
       "description": "路径",
       "label": "路径："
+    },
+    "permissionType": {
+      "bsonType": "int",
+      "description": "权限类型",
+      "label": "权限类型：",
+      "defaultValue": 0,
+      "enum": [
+        {
+          "text": "无需权限",
+          "value": 0
+        },
+        {
+          "text": "需权限",
+          "value": 1
+        }
+      ],
+      "componentForEdit": {
+        "name": "uni-data-checkbox"
+      }
     },
     "permission": {
       "bsonType": "int",

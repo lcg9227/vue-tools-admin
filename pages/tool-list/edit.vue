@@ -13,6 +13,12 @@
       <uni-forms-item name="path" label="路径：">
         <uni-easyinput placeholder="路径" v-model="formData.path"></uni-easyinput>
       </uni-forms-item>
+      <uni-forms-item name="permissionType" label="权限类型：">
+        <uni-data-checkbox v-model="formData.permissionType" :localdata="formOptions.permissionType_localdata"></uni-data-checkbox>
+      </uni-forms-item>
+      <uni-forms-item name="permission" label="权限：">
+        <uni-data-checkbox v-model="formData.permission" collection="uni-id-permissions" field="permission_name as text, permission_id as value"></uni-data-checkbox>
+      </uni-forms-item>
       <view class="uni-button-group">
         <button type="primary" class="uni-button" style="width: 100px;" @click="submit">提交</button>
         <navigator open-type="navigateBack" style="margin-left: 15px;">
@@ -48,7 +54,9 @@
         "name": "",
         "type": 0,
         "icon": "",
-        "path": ""
+        "path": "",
+        "permissionType": 0,
+        "permission": null
       }
       return {
         formData,
@@ -60,6 +68,16 @@
             },
             {
               "text": "外链",
+              "value": 1
+            }
+          ],
+          "permissionType_localdata": [
+            {
+              "text": "无需权限",
+              "value": 0
+            },
+            {
+              "text": "需权限",
               "value": 1
             }
           ]
@@ -123,7 +141,7 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("name,type,icon,path").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field("name,type,icon,path,permissionType,permission").get().then((res) => {
           const data = res.result.data[0]
           if (data) {
             this.formData = data

@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class="uni-container">
-      <unicloud-db ref="udb" :collection="collectionList" field="name,type,icon,path" :where="where" page-data="replace"
+      <unicloud-db ref="udb" :collection="collectionList" :where="where" page-data="replace"
         :orderby="orderby" :getcount="true" :page-size="options.pageSize" :page-current="options.pageCurrent"
         v-slot:default="{data,pagination,loading,error,options}" :options="options" loadtime="manual" @load="onqueryload">
         <uni-table ref="table" :loading="loading" :emptyText="error.message || '没有更多数据'" border stripe type="selection" @selection-change="selectionChange">
@@ -25,6 +25,8 @@
             <uni-th align="center" filter-type="select" :filter-data="options.filterData.type_localdata" @filter-change="filterChange($event, 'type')">类型：</uni-th>
             <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'icon')" sortable @sort-change="sortChange($event, 'icon')">图标：</uni-th>
             <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'path')" sortable @sort-change="sortChange($event, 'path')">路径：</uni-th>
+            <uni-th align="center" filter-type="select" :filter-data="options.filterData.permissionType_localdata" @filter-change="filterChange($event, 'permissionType')">权限类型：</uni-th>
+            <uni-th align="center">权限：</uni-th>
             <uni-th align="center">操作</uni-th>
           </uni-tr>
           <uni-tr v-for="(item,index) in data" :key="index">
@@ -32,6 +34,8 @@
             <uni-td align="center">{{options.type_valuetotext[item.type]}}</uni-td>
             <uni-td align="center">{{item.icon}}</uni-td>
             <uni-td align="center">{{item.path}}</uni-td>
+            <uni-td align="center">{{options.permissionType_valuetotext[item.permissionType]}}</uni-td>
+            <uni-td align="center">{{item.permission && item.permission[0] && item.permission[0].text}}</uni-td>
             <uni-td align="center">
               <view class="uni-group">
                 <button @click="navigateTo('./edit?id='+item._id, false)" class="uni-button" size="mini" type="primary">修改</button>
@@ -67,7 +71,7 @@
   export default {
     data() {
       return {
-        collectionList: "tool-list",
+        collectionList: [ db.collection('tool-list').field('name,type,icon,path,permissionType,permission').getTemp(),db.collection('uni-id-permissions').field('permission_name as text, permission_id').getTemp() ],
         query: '',
         where: '',
         orderby: dbOrderBy,
@@ -86,6 +90,16 @@
                 "text": "外链",
                 "value": 1
               }
+            ],
+            "permissionType_localdata": [
+              {
+                "text": "无需权限",
+                "value": 0
+              },
+              {
+                "text": "需权限",
+                "value": 1
+              }
             ]
           },
           ...enumConverter
@@ -101,7 +115,9 @@
             "名称：": "name",
             "类型：": "type",
             "图标：": "icon",
-            "路径：": "path"
+            "路径：": "path",
+            "权限类型：": "permissionType",
+            "权限：": "permission"
           }
         },
         exportExcelData: []

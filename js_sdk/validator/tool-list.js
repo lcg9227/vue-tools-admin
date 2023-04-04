@@ -46,6 +46,35 @@ const validator = {
       }
     ],
     "label": "路径："
+  },
+  "permissionType": {
+    "rules": [
+      {
+        "format": "int"
+      },
+      {
+        "range": [
+          {
+            "text": "无需权限",
+            "value": 0
+          },
+          {
+            "text": "需权限",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "label": "权限类型：",
+    "defaultValue": 0
+  },
+  "permission": {
+    "rules": [
+      {
+        "format": "int"
+      }
+    ],
+    "label": "权限："
   }
 }
 
@@ -53,6 +82,10 @@ const enumConverter = {
   "type_valuetotext": {
     "0": "页面",
     "1": "外链"
+  },
+  "permissionType_valuetotext": {
+    "0": "无需权限",
+    "1": "需权限"
   }
 }
 

@@ -25,6 +25,7 @@
             <uni-th align="center" filter-type="select" :filter-data="options.filterData.type_localdata" @filter-change="filterChange($event, 'type')">类型：</uni-th>
             <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'icon')" sortable @sort-change="sortChange($event, 'icon')">图标：</uni-th>
             <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'path')" sortable @sort-change="sortChange($event, 'path')">路径：</uni-th>
+            <uni-th align="center" filter-type="search" @filter-change="filterChange($event, 'url')" sortable @sort-change="sortChange($event, 'url')">路径：</uni-th>
             <uni-th align="center" filter-type="select" :filter-data="options.filterData.permissionType_localdata" @filter-change="filterChange($event, 'permissionType')">权限类型：</uni-th>
             <uni-th align="center">权限：</uni-th>
             <uni-th align="center">操作</uni-th>
@@ -34,6 +35,7 @@
             <uni-td align="center">{{options.type_valuetotext[item.type]}}</uni-td>
             <uni-td align="center">{{item.icon}}</uni-td>
             <uni-td align="center">{{item.path}}</uni-td>
+            <uni-td align="center">{{item.url}}</uni-td>
             <uni-td align="center">{{options.permissionType_valuetotext[item.permissionType]}}</uni-td>
             <uni-td align="center">{{item.permission && item.permission[0] && item.permission[0].text}}</uni-td>
             <uni-td align="center">
@@ -71,7 +73,7 @@
   export default {
     data() {
       return {
-        collectionList: [ db.collection('tool-list').field('name,type,icon,path,permissionType,permission').getTemp(),db.collection('uni-id-permissions').field('permission_name as text, permission_id').getTemp() ],
+        collectionList: [ db.collection('tool-list').field('name,type,icon,path,url,permissionType,permission').getTemp(),db.collection('uni-id-permissions').field('permission_name as text, permission_id').getTemp() ],
         query: '',
         where: '',
         orderby: dbOrderBy,
@@ -115,7 +117,7 @@
             "名称：": "name",
             "类型：": "type",
             "图标：": "icon",
-            "路径：": "path",
+            "路径：": "url",
             "权限类型：": "permissionType",
             "权限：": "permission"
           }

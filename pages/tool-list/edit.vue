@@ -11,7 +11,10 @@
         <uni-easyinput placeholder="icon" v-model="formData.icon"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="path" label="路径：">
-        <uni-easyinput placeholder="路径" v-model="formData.path"></uni-easyinput>
+        <uni-easyinput placeholder="路径(内部页面路径)" v-model="formData.path"></uni-easyinput>
+      </uni-forms-item>
+      <uni-forms-item name="url" label="路径：">
+        <uni-easyinput placeholder="路径(外链使用)" v-model="formData.url"></uni-easyinput>
       </uni-forms-item>
       <uni-forms-item name="permissionType" label="权限类型：">
         <uni-data-checkbox v-model="formData.permissionType" :localdata="formOptions.permissionType_localdata"></uni-data-checkbox>
@@ -55,6 +58,7 @@
         "type": 0,
         "icon": "",
         "path": "",
+        "url": "",
         "permissionType": 0,
         "permission": null
       }
@@ -141,7 +145,7 @@
         uni.showLoading({
           mask: true
         })
-        db.collection(dbCollectionName).doc(id).field("name,type,icon,path,permissionType,permission").get().then((res) => {
+        db.collection(dbCollectionName).doc(id).field("name,type,icon,path,url,permissionType,permission").get().then((res) => {
           const data = res.result.data[0]
           if (data) {
             this.formData = data

@@ -47,6 +47,14 @@ const validator = {
     ],
     "label": "路径："
   },
+  "url": {
+    "rules": [
+      {
+        "format": "string"
+      }
+    ],
+    "label": "路径："
+  },
   "permissionType": {
     "rules": [
       {

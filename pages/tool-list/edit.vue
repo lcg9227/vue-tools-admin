@@ -60,7 +60,7 @@
         "path": "",
         "url": "",
         "permissionType": 0,
-        "permission": null
+        "permission": ""
       }
       return {
         formData,

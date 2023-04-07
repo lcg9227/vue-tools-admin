@@ -79,7 +79,7 @@ const validator = {
   "permission": {
     "rules": [
       {
-        "format": "int"
+        "format": "string"
       }
     ],
     "label": "权限："
